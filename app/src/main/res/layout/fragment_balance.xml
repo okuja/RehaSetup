@@ -4,6 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".presentation.transactions.balance.BalanceFragment">
 
+    <data>
+
+        <variable
+            name="balanceViewModel"
+            type="com.okujajoshua.reha.presentation.transactions.balance.BalanceViewModel" />
+    </data>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/balanceLayout"

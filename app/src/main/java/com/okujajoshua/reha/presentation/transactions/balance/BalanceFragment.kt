@@ -41,6 +41,13 @@ class BalanceFragment : Fragment() {
         viewModel = ViewModelProviders.of(this,viewModelFactory).get(BalanceViewModel::class.java)
         Toast.makeText(context, "Email: ${viewModel.email}, Password: ${viewModel.password}", Toast.LENGTH_LONG).show()
 
+        // Set the viewmodel for databinding - this allows the bound layout access
+        // to all the data in the ViewModel
+        binding.balanceViewModel = viewModel
+
+        // Specify the current activity as the lifecycle owner of the binding.
+        // This is used so that the binding can observe LiveData updates
+        binding.lifecycleOwner = this
 
         binding.addmoneyButton.setOnClickListener{view: View ->
             view.findNavController().navigate(R.id.action_balanceFragment_to_addMoneyFragment)
