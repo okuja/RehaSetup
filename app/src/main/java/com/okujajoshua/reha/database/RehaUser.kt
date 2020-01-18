@@ -8,20 +8,23 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "reha_user_table")
 data class RehaUser (
     @PrimaryKey(autoGenerate = true)
-    var id:Long,
+    val id:Long = 0L,
 
     @ColumnInfo(name = "user_id")
-    var userId:Long,
+    val userId:String ,
 
     @ColumnInfo(name = "user_email")
-    var email:String,
+    val email:String,
 
-    @ColumnInfo(name = "user_name")
-    var name: String = "",
+    @ColumnInfo(name = "first_name")
+    val firstName: String ,
 
-    @ColumnInfo(name = "card_number")
-    var cardNumber: String = "",
+    @ColumnInfo(name = "second_name")
+    val secondName: String ,
 
-    @ColumnInfo(name = "account_balance")
-    var accountBalance: String = ""
+    @ColumnInfo(name = "telephone")
+    val telephone: String ,
+
+    @ColumnInfo(name = "password")
+    val password: String
 )

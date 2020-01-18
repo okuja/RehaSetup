@@ -7,6 +7,9 @@ apply plugin: 'kotlin-android-extensions'
 // Adding the apply plugin statement for safeargs
 apply plugin: 'androidx.navigation.safeargs'
 
+//room
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 29
     defaultConfig {
@@ -45,6 +48,15 @@ dependencies {
 
     //ViewModel
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+
+    // Room components
     implementation 'androidx.room:room-runtime:2.2.3'
-    annotationProcessor 'androidx.room:room-compiler:2.2.3'
+    implementation "androidx.room:room-ktx:2.2.3"
+    kapt "androidx.room:room-compiler:2.2.3"
+    androidTestImplementation "androidx.room:room-testing:2.2.3"
+
+
+    //coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1"
 }

@@ -8,7 +8,11 @@ import androidx.room.RoomDatabase
 @Database(entities = [RehaUser::class],version = 1, exportSchema = false)
 abstract class RehaDatabase : RoomDatabase(){
 
-    //can have many dao
+
+    /**
+     * Connects the database to the DAO.
+     * can have many dao
+     */
     abstract val rehaDatabaseDao: RehaDatabaseDao
 
     companion object{
@@ -23,7 +27,7 @@ abstract class RehaDatabase : RoomDatabase(){
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         RehaDatabase::class.java,
-                        "reha_history_database"
+                        "reha_database"
                     )
                         .fallbackToDestructiveMigration()
                         .build()
