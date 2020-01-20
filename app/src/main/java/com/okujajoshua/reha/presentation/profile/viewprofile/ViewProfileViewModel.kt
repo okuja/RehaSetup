@@ -2,10 +2,12 @@ package com.okujajoshua.reha.presentation.profile.viewprofile
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.okujajoshua.reha.database.RehaDatabaseDao
 import com.okujajoshua.reha.database.RehaUser
 import kotlinx.coroutines.*
+import timber.log.Timber
 
 class ViewProfileViewModel(
     val database: RehaDatabaseDao,
@@ -15,15 +17,21 @@ class ViewProfileViewModel(
 
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
-    private var currentuser = MutableLiveData<RehaUser?>()
+
+    private var _currentuser = MutableLiveData<RehaUser?>()
+    val currentuser : LiveData<RehaUser?>
+    get() = _currentuser
+
 
     init{
+
         initializeCurrentUser(user_email)
+
     }
 
     private fun initializeCurrentUser(email:String){
         uiScope.launch {
-            currentuser.value = getCurrentUserFromDatabase(email)
+            _currentuser.value = getCurrentUserFromDatabase(email)
         }
     }
 
