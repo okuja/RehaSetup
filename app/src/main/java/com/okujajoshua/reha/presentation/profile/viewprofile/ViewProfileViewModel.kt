@@ -4,13 +4,12 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.okujajoshua.reha.database.RehaDatabaseDao
+import com.okujajoshua.reha.database.RehaUserDao
 import com.okujajoshua.reha.database.RehaUser
 import kotlinx.coroutines.*
-import timber.log.Timber
 
 class ViewProfileViewModel(
-    val database: RehaDatabaseDao,
+    val user: RehaUserDao,
     application: Application,
     user_email:String
 ):AndroidViewModel(application){
@@ -38,7 +37,7 @@ class ViewProfileViewModel(
     private suspend fun getCurrentUserFromDatabase(email:String): RehaUser?{
 
         return withContext(Dispatchers.IO){
-            var user = database.getuserbyemail(email)
+            var user = user.getuserbyemail(email)
             user
         }
     }

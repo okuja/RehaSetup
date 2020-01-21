@@ -6,7 +6,7 @@ import androidx.room.Query
 import androidx.room.Update
 
 @Dao
-interface RehaDatabaseDao {
+interface RehaUserDao {
 
     @Insert
     fun insertuser(user: RehaUser)
@@ -23,6 +23,7 @@ interface RehaDatabaseDao {
 
     @Query("DELETE FROM reha_user_table")
     fun clear()
+    
 
 
 }

@@ -3,13 +3,13 @@ package com.okujajoshua.reha.presentation.signup
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.okujajoshua.reha.database.RehaDatabaseDao
+import com.okujajoshua.reha.database.RehaUserDao
 import com.okujajoshua.reha.database.RehaUser
 import kotlinx.coroutines.*
 import timber.log.Timber
 
 class SignUpViewModel(
-    val database : RehaDatabaseDao,
+    val user : RehaUserDao,
     application : Application
 ):AndroidViewModel(application) {
 
@@ -30,7 +30,7 @@ class SignUpViewModel(
 
     private suspend fun insertNewUser(user: RehaUser){
         withContext(Dispatchers.IO){
-            database.insertuser(user)
+            this@SignUpViewModel.user.insertuser(user)
         }
     }
 

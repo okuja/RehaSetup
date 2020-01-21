@@ -4,6 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".presentation.signin.SigninFragment">
 
+    <data>
+        <variable
+            name="signInViewModel"
+            type="com.okujajoshua.reha.presentation.signin.SigninViewModel" />
+    </data>
+
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -60,6 +66,7 @@
             android:layout_marginBottom="296dp"
             android:enabled="true"
             android:text="@string/action_sign_in_short"
+            android:onClick="@{()-> signInViewModel.onSignIn(emailAddress.getText().toString())}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.491"

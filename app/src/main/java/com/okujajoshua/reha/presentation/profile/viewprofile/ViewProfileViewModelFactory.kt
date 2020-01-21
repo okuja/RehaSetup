@@ -3,11 +3,11 @@ package com.okujajoshua.reha.presentation.profile.viewprofile
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.okujajoshua.reha.database.RehaDatabaseDao
+import com.okujajoshua.reha.database.RehaUserDao
 import java.lang.IllegalArgumentException
 
 class ViewProfileViewModelFactory(
-    private val dataSource: RehaDatabaseDao,
+    private val dataSource: RehaUserDao,
     private val application : Application,
     private val user_email: String
 ):ViewModelProvider.Factory {

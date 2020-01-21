@@ -30,7 +30,7 @@ class SignupFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
 
-        val dataSource = RehaDatabase.getInstance(application).rehaDatabaseDao
+        val dataSource = RehaDatabase.getInstance(application).rehaUserDao
 
         signUpViewModelFactory = SignUpViewModelFactory(dataSource,application)
 

@@ -62,15 +62,16 @@
         <argument
             android:name="email"
             app:argType="string" />
-        <argument
-            android:name="password"
-            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/addMoneyFragment"
         android:name="com.okujajoshua.reha.presentation.transactions.addmoney.AddMoneyFragment"
         android:label="fragment_add_money"
-        tools:layout="@layout/fragment_add_money" />
+        tools:layout="@layout/fragment_add_money" >
+        <argument
+            android:name="email"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/sendMoneyFragment"
         android:name="com.okujajoshua.reha.presentation.transactions.sendmoney.SendMoneyFragment"

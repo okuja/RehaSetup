@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "reha_user_table")
 data class RehaUser (
     @PrimaryKey(autoGenerate = true)
-    val id:Long = 0L,
+    val id:Long ,
 
     @ColumnInfo(name = "user_id")
     val userId:String ,

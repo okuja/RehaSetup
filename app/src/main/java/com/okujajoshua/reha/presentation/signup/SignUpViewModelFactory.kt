@@ -3,11 +3,11 @@ package com.okujajoshua.reha.presentation.signup
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.okujajoshua.reha.database.RehaDatabaseDao
+import com.okujajoshua.reha.database.RehaUserDao
 import java.lang.IllegalArgumentException
 
 class SignUpViewModelFactory(
-    private val dataSource : RehaDatabaseDao,
+    private val dataSource : RehaUserDao,
     private val application: Application
 ) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")

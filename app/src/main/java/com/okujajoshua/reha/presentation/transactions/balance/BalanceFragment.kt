@@ -35,11 +35,11 @@ class BalanceFragment : Fragment() {
 
 
         //initialize viewmodelfactory
-        viewModelFactory = BalanceViewModelFactory(args.email,args.password)
+        viewModelFactory = BalanceViewModelFactory("ajokuja@gmail.com","123")
 
         //initialize viewmodel object
         viewModel = ViewModelProviders.of(this,viewModelFactory).get(BalanceViewModel::class.java)
-        Toast.makeText(context, "Email: ${viewModel.email}, Password: ${viewModel.password}", Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "Email: ${viewModel.email.value}, Password: ${viewModel.password.value}", Toast.LENGTH_LONG).show()
 
         // Set the viewmodel for databinding - this allows the bound layout access
         // to all the data in the ViewModel
@@ -50,7 +50,9 @@ class BalanceFragment : Fragment() {
         binding.lifecycleOwner = this
 
         binding.addmoneyButton.setOnClickListener{view: View ->
-            view.findNavController().navigate(R.id.action_balanceFragment_to_addMoneyFragment)
+            view.findNavController().navigate(
+                BalanceFragmentDirections.actionBalanceFragmentToAddMoneyFragment(args.email)
+            )
         }
 
         binding.sendmoneyButton.setOnClickListener{view: View ->
@@ -59,6 +61,12 @@ class BalanceFragment : Fragment() {
 
         binding.verifyaccountButton.setOnClickListener{view: View ->
             view.findNavController().navigate(R.id.action_balanceFragment_to_verificationFragment)
+        }
+
+        binding.viewTransactions.setOnClickListener { view: View ->
+            view.findNavController().navigate(
+                BalanceFragmentDirections.actionBalanceFragmentToViewTransactionsFragment()
+            )
         }
 
         setHasOptionsMenu(true)

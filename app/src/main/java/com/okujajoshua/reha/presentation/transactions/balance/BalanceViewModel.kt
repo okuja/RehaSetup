@@ -16,6 +16,7 @@ class BalanceViewModel(email:String,password:String) : ViewModel() {
         get() = _password
 
     init {
+        Timber.i("%s",email)
         _email.value = email
         _password.value = password
     }

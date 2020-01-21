@@ -5,15 +5,16 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [RehaUser::class],version = 1, exportSchema = false)
+@Database(entities = [RehaUser::class,Transaction::class],version = 2, exportSchema = false)
 abstract class RehaDatabase : RoomDatabase(){
 
 
     /**
-     * Connects the database to the DAO.
+     * Connects the user to the DAO.
      * can have many dao
      */
-    abstract val rehaDatabaseDao: RehaDatabaseDao
+    abstract val rehaUserDao: RehaUserDao
+    abstract val transactionDao: TransactionDao
 
     companion object{
 

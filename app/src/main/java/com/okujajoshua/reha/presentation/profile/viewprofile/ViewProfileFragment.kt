@@ -30,7 +30,7 @@ class ViewProfileFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
 
-        val dataSource = RehaDatabase.getInstance(application).rehaDatabaseDao
+        val dataSource = RehaDatabase.getInstance(application).rehaUserDao
 
         val userEmail = "ajokuja@gmail.com"
 
