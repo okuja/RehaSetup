@@ -19,8 +19,8 @@ class SignUpViewModel(
 
     fun onCreateUser(email:String,first_name:String,second_name:String,telephone:String,password:String){
         uiScope.launch {
-//            val newUser = RehaUser(1,1,"ajokuja@gmail.com","Okuja","1234 1113 4355","2 000 000")
-            val newUser = RehaUser(1,"23",email,first_name,second_name,telephone,password)
+
+            val newUser = RehaUser(email,first_name,second_name,telephone,password)
 
             Timber.i("User is %s %s %s %s",email,first_name,second_name,telephone)
 

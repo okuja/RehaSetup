@@ -7,12 +7,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "reha_user_table")
 data class RehaUser (
-    @PrimaryKey(autoGenerate = true)
-    val id:Long ,
 
-    @ColumnInfo(name = "user_id")
-    val userId:String ,
-
+    @PrimaryKey
     @ColumnInfo(name = "user_email")
     val email:String,
 

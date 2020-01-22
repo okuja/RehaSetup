@@ -14,9 +14,6 @@ interface RehaUserDao {
     @Update
     fun updateuser(user: RehaUser)
 
-    @Query("SELECT * FROM reha_user_table WHERE user_id = :key")
-    fun getuser(key: Long): RehaUser?
-
     @Query("SELECT * FROM reha_user_table WHERE user_email = :email")
     fun getuserbyemail(email: String): RehaUser?
 

@@ -7,17 +7,17 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "transactions_table")
 data class Transaction(
-//    @PrimaryKey(autoGenerate = true)
-//    val id: Int,
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "transaction_id")
+    var id: Int? = null,
 
-    @PrimaryKey
     @ColumnInfo(name = "user_email")
-    val email: String,
+    var email: String="",
 
     @ColumnInfo(name = "card_number")
-    val cardNumber: String,
+    var cardNumber: String="",
 
     @ColumnInfo(name = "amount")
-    val amount: String
+    var amount: String=""
 
 )

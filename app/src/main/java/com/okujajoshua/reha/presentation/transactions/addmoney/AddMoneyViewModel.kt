@@ -26,7 +26,11 @@ class AddMoneyViewModel(
 
     fun onSaveTransaction(email:String ,cardNumber:String,amount:String){
         uiScope.launch{
-            val newTransaction = Transaction(email, cardNumber, amount)
+            val newTransaction = Transaction()
+            newTransaction.email = email
+            newTransaction.cardNumber=cardNumber
+            newTransaction.amount= amount
+
 
             withContext(Dispatchers.IO){
                 dataSource.insert(newTransaction)

@@ -39,7 +39,7 @@ class ViewTransactionsFragment : Fragment() {
         binding.transactionsList.adapter = adapter
         viewTransactionsViewModel.transactions.observe(viewLifecycleOwner, Observer {
             it?.let{
-                adapter.data = it
+                adapter.submitList(it)
             }
         })
 
