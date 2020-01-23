@@ -16,8 +16,8 @@ interface TransactionDao {
     @Update
     fun update(transaction: Transaction)
 
-//    @Query("SELECT * FROM transactions_table WHERE id = :key")
-//    fun get(key: Long): Transaction?
+    @Query("SELECT * FROM transactions_table WHERE transaction_id = :key")
+    fun getTransactionById(key: Int): Transaction?
 
     @Query("SELECT * FROM transactions_table WHERE user_email = :email")
     fun getTransactionByEmail(email: String): LiveData<List<Transaction>>

@@ -16,26 +16,18 @@ class ViewTransactionsViewModel(
 
     val transactions = dataSource.getTransactionByEmail(email)
 
-//    private val _transactions = MutableLiveData<LiveData<List<Transaction>>>()
-//    val transactions: LiveData<LiveData<List<Transaction>>>
-//        get() = _transactions
+    private val _navigateToTransactionDetail = MutableLiveData<Int>()
+    val navigateToTransactionDetail: LiveData<Int>
+        get() = _navigateToTransactionDetail
 
-//    init {
-//        initializeTransactions(email)
-//    }
 
-//    fun initializeTransactions(email: String){
-//        uiScope.launch {
-//            _transactions.value = getUsersTransactions(email)
-//        }
-//    }
-//
-//    private suspend fun getUsersTransactions(email: String):LiveData<List<Transaction>>?{
-//        return withContext(Dispatchers.IO){
-//            var transactions = dataSource.getTransactionByEmail(email)
-//            transactions
-//        }
-//    }
+    fun onTransactionClicked(id:Int){
+        _navigateToTransactionDetail.value = id
+    }
+
+    fun onDoneNavigatingToTransactionDetail(){
+        _navigateToTransactionDetail.value = null
+    }
 
     override fun onCleared() {
         super.onCleared()
