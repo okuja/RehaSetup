@@ -1,12 +1,18 @@
 package com.okujajoshua.reha.presentation.transactions.viewtransactions
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.okujajoshua.reha.R
 import com.okujajoshua.reha.database.Transaction
 import com.okujajoshua.reha.databinding.TransactionItemBinding
+
+
+//private val ITEM_VIEW_TYPE_HEADER = 0
+//private val ITEM_VIEW_TYPE_ITEM = 1
 
 class TransactionsAdapter(val clickListener: TransactionsListener) :
     ListAdapter<Transaction, TransactionsAdapter.ViewHolder>(TransactionDiffCallback()) {
@@ -17,6 +23,23 @@ class TransactionsAdapter(val clickListener: TransactionsListener) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position)!!, clickListener)
+    }
+
+//    override fun getItemViewType(position: Int): Int {
+//        return when (getItem(position)) {
+//            is DataItem.Header -> ITEM_VIEW_TYPE_HEADER
+//            is DataItem.TransactionItem -> ITEM_VIEW_TYPE_ITEM
+//        }
+//    }
+
+    class TextViewHolder(view: View): RecyclerView.ViewHolder(view) {
+        companion object {
+            fun from(parent: ViewGroup): TextViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val view = layoutInflater.inflate(R.layout.header, parent, false)
+                return TextViewHolder(view)
+            }
+        }
     }
 
 
@@ -61,3 +84,17 @@ class TransactionDiffCallback : DiffUtil.ItemCallback<Transaction>() {
         return oldItem == newItem
     }
 }
+
+//sealed class DataItem{
+//
+//    abstract val id:Int?
+//
+//    data class TransactionItem(val transaction : Transaction) : DataItem(){
+//        override val id = transaction.id
+//    }
+//
+//    object Header : DataItem(){
+//        override val id = Int.MIN_VALUE
+//    }
+//
+//}

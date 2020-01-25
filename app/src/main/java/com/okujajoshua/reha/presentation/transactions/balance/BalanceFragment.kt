@@ -63,6 +63,10 @@ class BalanceFragment : Fragment() {
             view.findNavController().navigate(R.id.action_balanceFragment_to_verificationFragment)
         }
 
+        binding.overview.setOnClickListener{view: View ->
+            view.findNavController().navigate(R.id.action_balanceFragment_to_overviewFragment)
+        }
+
         binding.viewTransactions.setOnClickListener { view: View ->
             view.findNavController().navigate(
                 BalanceFragmentDirections.actionBalanceFragmentToViewTransactionsFragment()
