@@ -132,5 +132,10 @@
     <fragment
         android:id="@+id/overviewDetailFragment"
         android:name="com.okujajoshua.reha.presentation.overviewdetail.OverviewDetailFragment"
-        android:label="OverviewDetailFragment" />
+        android:label="OverviewDetailFragment" >
+        <argument
+            android:name="selectedProperty"
+            app:argType="com.okujajoshua.reha.network.MarsProperty"
+            />
+    </fragment>
 </navigation>
