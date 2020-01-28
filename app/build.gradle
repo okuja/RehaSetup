@@ -26,6 +26,9 @@ android {
                         "databinding"     : "true"
                 ]
             }
+            kotlinOptions {
+                jvmTarget = JavaVersion.VERSION_1_8.toString()
+            }
         }
     }
     buildTypes {
@@ -83,4 +86,7 @@ dependencies {
 
     //glide
     implementation "com.github.bumptech.glide:glide:4.11.0"
+
+    //work-manager
+    implementation "androidx.work:work-runtime-ktx:2.3.0"
 }
