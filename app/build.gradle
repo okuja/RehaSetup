@@ -22,8 +22,8 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [
-                        "room.incremental":"true",
-                        "databinding":"true"
+                        "room.incremental": "true",
+                        "databinding"     : "true"
                 ]
             }
         }

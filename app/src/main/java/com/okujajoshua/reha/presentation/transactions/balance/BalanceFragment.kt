@@ -73,6 +73,11 @@ class BalanceFragment : Fragment() {
             )
         }
 
+        binding.videoButton.setOnClickListener{ view : View ->
+            view.findNavController().navigate(R.id.action_balanceFragment_to_devByteFragment)
+
+        }
+
         setHasOptionsMenu(true)
 
 

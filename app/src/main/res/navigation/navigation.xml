@@ -65,6 +65,9 @@
         <action
             android:id="@+id/action_balanceFragment_to_overviewFragment"
             app:destination="@id/overviewFragment" />
+        <action
+            android:id="@+id/action_balanceFragment_to_devByteFragment"
+            app:destination="@id/devByteFragment" />
     </fragment>
     <fragment
         android:id="@+id/addMoneyFragment"
@@ -138,4 +141,8 @@
             app:argType="com.okujajoshua.reha.network.MarsProperty"
             />
     </fragment>
+    <fragment
+        android:id="@+id/devByteFragment"
+        android:name="com.okujajoshua.reha.presentation.devbyte.DevByteFragment"
+        android:label="DevByteFragment" />
 </navigation>
