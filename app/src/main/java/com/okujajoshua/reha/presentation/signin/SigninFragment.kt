@@ -46,7 +46,7 @@ class SigninFragment : Fragment() {
         signinViewModel.navigateToBalance.observe(this, Observer{
             if(it == true){
                 this.findNavController().navigate(
-                    SigninFragmentDirections.actionSigninFragmentToBalanceFragment(signinViewModel.currentuser.value!!.email))
+                    SigninFragmentDirections.actionSigninFragmentToBalanceFragment(signinViewModel.currentuser.value!!.email,signinViewModel.currentuser.value!!.password))
                 signinViewModel.doneNavigating()
             }
         })

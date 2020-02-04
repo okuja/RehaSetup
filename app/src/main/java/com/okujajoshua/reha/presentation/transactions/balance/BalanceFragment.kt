@@ -35,7 +35,7 @@ class BalanceFragment : Fragment() {
 
 
         //initialize viewmodelfactory
-        viewModelFactory = BalanceViewModelFactory("ajokuja@gmail.com","123")
+        viewModelFactory = BalanceViewModelFactory(args.email,args.password)
 
         //initialize viewmodel object
         viewModel = ViewModelProviders.of(this,viewModelFactory).get(BalanceViewModel::class.java)
@@ -51,21 +51,20 @@ class BalanceFragment : Fragment() {
 
         binding.addmoneyButton.setOnClickListener{view: View ->
             view.findNavController().navigate(
-                BalanceFragmentDirections.actionBalanceFragmentToAddMoneyFragment(args.email)
+                BalanceFragmentDirections.actionBalanceFragmentToOptionsFragment()
             )
         }
 
         binding.sendmoneyButton.setOnClickListener{view: View ->
-            view.findNavController().navigate(R.id.action_balanceFragment_to_sendMoneyFragment)
+            view.findNavController().navigate(
+               BalanceFragmentDirections.actionBalanceFragmentToAddMoneyFragment(args.email,"Send Money")
+            )
         }
 
         binding.verifyaccountButton.setOnClickListener{view: View ->
             view.findNavController().navigate(R.id.action_balanceFragment_to_verificationFragment)
         }
 
-        binding.overview.setOnClickListener{view: View ->
-            view.findNavController().navigate(R.id.action_balanceFragment_to_overviewFragment)
-        }
 
         binding.viewTransactions.setOnClickListener { view: View ->
             view.findNavController().navigate(
@@ -73,8 +72,8 @@ class BalanceFragment : Fragment() {
             )
         }
 
-        binding.videoButton.setOnClickListener{ view : View ->
-            view.findNavController().navigate(R.id.action_balanceFragment_to_devByteFragment)
+        binding.cardButton.setOnClickListener{ view : View ->
+            view.findNavController().navigate(R.id.action_balanceFragment_to_cardFragment)
 
         }
 
@@ -95,8 +94,6 @@ class BalanceFragment : Fragment() {
             R.id.viewProfileFragment ->  view!!.findNavController().navigate(R.id.action_balanceFragment_to_viewProfileFragment)
         }
         return super.onOptionsItemSelected(item)
-
-        //return NavigationUI.onNavDestinationSelected(item,view!!.findNavController()) || super.onOptionsItemSelected(item)
     }
 
 

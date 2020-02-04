@@ -3,8 +3,8 @@ package com.okujajoshua.reha.presentation.transactions.transactiondetails
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.okujajoshua.reha.database.Transaction
-import com.okujajoshua.reha.database.TransactionDao
+import com.okujajoshua.reha.database.transaction.Transaction
+import com.okujajoshua.reha.database.transaction.TransactionDao
 import kotlinx.coroutines.*
 
 class TransactionDetailViewModel(

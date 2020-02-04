@@ -45,12 +45,6 @@
         android:label="fragment_balance"
         tools:layout="@layout/fragment_balance" >
         <action
-            android:id="@+id/action_balanceFragment_to_addMoneyFragment"
-            app:destination="@id/addMoneyFragment" />
-        <action
-            android:id="@+id/action_balanceFragment_to_sendMoneyFragment"
-            app:destination="@id/sendMoneyFragment" />
-        <action
             android:id="@+id/action_balanceFragment_to_viewTransactionsFragment"
             app:destination="@id/viewTransactionsFragment" />
         <action
@@ -58,16 +52,22 @@
             app:destination="@id/viewProfileFragment" />
         <action
             android:id="@+id/action_balanceFragment_to_verificationFragment"
-            app:destination="@id/verificationFragment" />
+            app:destination="@id/navigation2" />
         <argument
             android:name="email"
             app:argType="string" />
         <action
-            android:id="@+id/action_balanceFragment_to_overviewFragment"
-            app:destination="@id/overviewFragment" />
+            android:id="@+id/action_balanceFragment_to_optionsFragment"
+            app:destination="@id/optionsFragment" />
         <action
-            android:id="@+id/action_balanceFragment_to_devByteFragment"
-            app:destination="@id/devByteFragment" />
+            android:id="@+id/action_balanceFragment_to_addMoneyFragment"
+            app:destination="@id/addMoneyFragment" />
+        <action
+            android:id="@+id/action_balanceFragment_to_cardFragment"
+            app:destination="@id/cardFragment" />
+        <argument
+            android:name="password"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/addMoneyFragment"
@@ -77,12 +77,13 @@
         <argument
             android:name="email"
             app:argType="string" />
+        <action
+            android:id="@+id/action_addMoneyFragment_to_amountFragment"
+            app:destination="@id/amountFragment" />
+        <argument
+            android:name="transactionType"
+            app:argType="string" />
     </fragment>
-    <fragment
-        android:id="@+id/sendMoneyFragment"
-        android:name="com.okujajoshua.reha.presentation.transactions.sendmoney.SendMoneyFragment"
-        android:label="fragment_send_money"
-        tools:layout="@layout/fragment_send_money" />
     <fragment
         android:id="@+id/viewTransactionsFragment"
         android:name="com.okujajoshua.reha.presentation.transactions.viewtransactions.ViewTransactionsFragment"
@@ -105,7 +106,11 @@
         android:id="@+id/editProfileFragment"
         android:name="com.okujajoshua.reha.presentation.profile.editprofile.EditProfileFragment"
         android:label="fragment_edit_profile"
-        tools:layout="@layout/fragment_edit_profile" />
+        tools:layout="@layout/fragment_edit_profile" >
+        <action
+            android:id="@+id/action_editProfileFragment_to_viewProfileFragment"
+            app:destination="@id/viewProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/transactionDetailFragment"
         android:name="com.okujajoshua.reha.presentation.transactions.transactiondetails.TransactionDetailFragment"
@@ -118,31 +123,83 @@
             android:name="transactionId"
             app:argType="integer" />
     </fragment>
+    <navigation
+        android:id="@+id/navigation2"
+        app:startDestination="@id/verificationFragment" >
+        <fragment
+            android:id="@+id/verificationFragment"
+            android:name="com.okujajoshua.reha.presentation.verification.documentdetails.VerificationFragment"
+            android:label="fragment_verification"
+            tools:layout="@layout/fragment_verification">
+            <action
+                android:id="@+id/action_verificationFragment_to_identificationFragment"
+                app:destination="@id/identificationFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/identificationFragment"
+            android:name="com.okujajoshua.reha.presentation.verification.identification.IdentificationFragment"
+            android:label="fragment_identification"
+            tools:layout="@layout/fragment_identification">
+            <action
+                android:id="@+id/action_identificationFragment_to_selfieFragment"
+                app:destination="@id/selfieFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/selfieFragment"
+            android:name="com.okujajoshua.reha.presentation.verification.selfie.SelfieFragment"
+            android:label="fragment_selfie"
+            tools:layout="@layout/fragment_selfie">
+            <action
+                android:id="@+id/action_selfieFragment_to_balanceFragment"
+                app:destination="@id/balanceFragment" />
+        </fragment>
+    </navigation>
     <fragment
-        android:id="@+id/verificationFragment"
-        android:name="com.okujajoshua.reha.presentation.verification.VerificationFragment"
-        android:label="fragment_verification"
-        tools:layout="@layout/fragment_verification" />
-    <fragment
-        android:id="@+id/overviewFragment"
-        android:name="com.okujajoshua.reha.presentation.overview.OverviewFragment"
-        android:label="over_view_fragment"
-        tools:layout="@layout/over_view_fragment" >
+        android:id="@+id/optionsFragment"
+        android:name="com.okujajoshua.reha.presentation.transactions.options.OptionsFragment"
+        android:label="fragment_options"
+        tools:layout="@layout/fragment_options" >
         <action
-            android:id="@+id/action_overviewFragment_to_overviewDetailFragment"
-            app:destination="@id/overviewDetailFragment" />
+            android:id="@+id/action_optionsFragment_to_optionPhoneFragment"
+            app:destination="@id/optionPhoneFragment" />
+        <action
+            android:id="@+id/action_optionsFragment_to_addMoneyFragment2"
+            app:destination="@id/addMoneyFragment" />
     </fragment>
     <fragment
-        android:id="@+id/overviewDetailFragment"
-        android:name="com.okujajoshua.reha.presentation.overviewdetail.OverviewDetailFragment"
-        android:label="OverviewDetailFragment" >
-        <argument
-            android:name="selectedProperty"
-            app:argType="com.okujajoshua.reha.network.MarsProperty"
-            />
+        android:id="@+id/cardFragment"
+        android:name="com.okujajoshua.reha.presentation.card.CardFragment"
+        android:label="fragment_card"
+        tools:layout="@layout/fragment_card" >
+        <action
+            android:id="@+id/action_cardFragment_to_cardDetailFragment"
+            app:destination="@id/cardDetailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/devByteFragment"
-        android:name="com.okujajoshua.reha.presentation.devbyte.DevByteFragment"
-        android:label="DevByteFragment" />
+        android:id="@+id/cardDetailFragment"
+        android:name="com.okujajoshua.reha.presentation.carddetail.CardDetailFragment"
+        android:label="fragment_card_detail"
+        tools:layout="@layout/fragment_card_detail" >
+        <action
+            android:id="@+id/action_cardDetailFragment_to_cardFragment"
+            app:destination="@id/cardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/optionPhoneFragment"
+        android:name="com.okujajoshua.reha.presentation.transactions.optionphone.OptionPhoneFragment"
+        android:label="fragment_option_phone"
+        tools:layout="@layout/fragment_option_phone" >
+        <action
+            android:id="@+id/action_optionPhoneFragment_to_balanceFragment"
+            app:destination="@id/balanceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/amountFragment"
+        android:name="com.okujajoshua.reha.presentation.transactions.amount.AmountFragment"
+        android:label="fragment_amount"
+        tools:layout="@layout/fragment_amount" >
+        <action
+            android:id="@+id/action_amountFragment_to_balanceFragment"
+            app:destination="@id/balanceFragment" />
+    </fragment>
 </navigation>

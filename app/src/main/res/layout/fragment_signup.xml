@@ -21,12 +21,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="92dp"
             android:layout_marginEnd="24dp"
 
             android:hint="@string/prompt_first_name"
             android:inputType="textEmailAddress"
             android:selectAllOnFocus="true"
+            app:layout_constraintBottom_toTopOf="@+id/second_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,32 +37,32 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="180dp"
             android:layout_marginEnd="24dp"
 
             android:hint="@string/prompt_second_name"
             android:inputType="textEmailAddress"
             android:selectAllOnFocus="true"
+            app:layout_constraintBottom_toTopOf="@+id/email_address"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/first_name" />
 
         <EditText
             android:id="@+id/email_address"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="264dp"
             android:layout_marginEnd="24dp"
 
             android:hint="@string/prompt_email"
             android:inputType="textEmailAddress"
             android:selectAllOnFocus="true"
+            app:layout_constraintBottom_toTopOf="@+id/telephone"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/second_name" />
 
         <EditText
             android:id="@+id/password"
@@ -70,36 +70,33 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
 
-            android:layout_marginTop="440dp"
             android:layout_marginEnd="24dp"
             android:hint="@string/prompt_password"
             android:imeActionLabel="@string/action_sign_in_short"
             android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:selectAllOnFocus="true"
+            app:layout_constraintBottom_toTopOf="@+id/signin_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/telephone" />
 
         <Button
             android:id="@+id/signin_button"
-            android:layout_width="258dp"
+            android:layout_width="364dp"
             android:layout_height="45dp"
             android:layout_gravity="start"
             android:layout_marginStart="48dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="48dp"
-            android:layout_marginBottom="64dp"
             android:enabled="true"
-            android:text="@string/action_register"
             android:onClick="@{()-> signupViewModel.onCreateUser(emailAddress.getText().toString(),firstName.getText().toString(),secondName.getText().toString(),telephone.getText().toString(),password.getText().toString())}"
+            android:text="@string/sign_up"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintHorizontal_bias="0.489"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password"
-            app:layout_constraintVertical_bias="0.649" />
+            app:layout_constraintTop_toBottomOf="@+id/password" />
 
         <ProgressBar
             android:id="@+id/loading"
@@ -119,14 +116,16 @@
 
         <EditText
             android:id="@+id/telephone"
-            android:layout_width="358dp"
-            android:layout_height="54dp"
-            android:layout_marginTop="336dp"
+            style="@style/edit_text_input_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/prompt_phone_number"
             android:inputType="phone"
+            app:layout_constraintBottom_toTopOf="@+id/password"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/email_address" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

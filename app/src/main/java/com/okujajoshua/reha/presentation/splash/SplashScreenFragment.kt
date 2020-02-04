@@ -27,6 +27,10 @@ class SplashScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //get shared preference from here and check if user is logged in
+        //if true go to balance page
+        //else go to login page
+
         Handler().postDelayed({
             findNavController().navigate(R.id.signinFragment,null)
         },3000)

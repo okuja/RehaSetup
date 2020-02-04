@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.okujajoshua.reha.R
-import com.okujajoshua.reha.database.Transaction
+import com.okujajoshua.reha.database.transaction.Transaction
 import com.okujajoshua.reha.databinding.TransactionItemBinding
 
 

@@ -23,9 +23,9 @@
             android:layout_height="31dp"
             android:text="@{transactiondetailViewModel.transaction.email}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/amount"
             app:layout_constraintHorizontal_bias="0.502"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/amount"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.424" />
 
@@ -35,9 +35,9 @@
             android:layout_height="31dp"
             android:text="@{transactiondetailViewModel.transaction.amount}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/cardNumber"
             app:layout_constraintHorizontal_bias="0.502"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/cardNumber"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.304" />
 
@@ -54,16 +54,16 @@
 
         <Button
             android:id="@+id/button"
-            android:layout_width="wrap_content"
+            android:layout_width="364dp"
             android:layout_height="wrap_content"
-            android:text="Close"
             android:onClick="@{()->transactiondetailViewModel.onClose()}"
+            android:text="Close"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.455"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/email"
+            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintStart_toStartOf="@+id/email"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.594" />
+            app:layout_constraintVertical_bias="0.907" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

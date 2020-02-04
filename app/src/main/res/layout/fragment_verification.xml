@@ -1,29 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/verifyaccount"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.verification.VerificationFragment">
+    tools:context=".presentation.verification.documentdetails.VerificationFragment">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="332dp"
-        android:layout_height="69dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="VERIFY ACCOUNT"
-        android:textAlignment="center"
-        android:textSize="52sp"
+    <EditText
+        android:id="@+id/first_name"
+        android:layout_width="363dp"
+        android:layout_height="wrap_content"
+
+        android:hint="Country of Nationality"
+        android:inputType="text|textEmailAddress"
+        android:selectAllOnFocus="true"
+        app:layout_constraintBottom_toTopOf="@+id/second_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <EditText
+        android:id="@+id/second_name"
+        android:layout_width="363dp"
+        android:layout_height="wrap_content"
+
+        android:hint="Document Type"
+        android:inputType="text"
+        android:selectAllOnFocus="true"
+        app:layout_constraintBottom_toTopOf="@+id/email_address"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/first_name" />
+
+    <EditText
+        android:id="@+id/email_address"
+        android:layout_width="363dp"
+        android:layout_height="wrap_content"
+
+        android:hint="Document Number"
+        android:inputType="number|text|textEmailAddress|phone"
+        android:selectAllOnFocus="true"
+        app:layout_constraintBottom_toTopOf="@+id/telephone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/second_name" />
+
+    <Button
+        android:id="@+id/signin_button"
+        android:layout_width="364dp"
+        android:layout_height="45dp"
+        android:layout_gravity="start"
+        android:enabled="true"
+        android:onClick="@{()-> signupViewModel.onCreateUser(emailAddress.getText().toString(),firstName.getText().toString(),secondName.getText().toString(),telephone.getText().toString(),password.getText().toString())}"
+        android:text="@string/action_continue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.011" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/telephone"
+        style="@style/edit_text_input_style"
+        android:layout_width="363dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Document Expiry Date"
+        android:inputType="date"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_address" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="354dp"
+        android:layout_height="wrap_content"
+        android:text="@string/string_document_validity"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/signin_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/telephone" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="354dp"
+        android:layout_height="wrap_content"
+        android:text="Please provide your valid identification document details below"
+        app:layout_constraintBottom_toTopOf="@+id/first_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

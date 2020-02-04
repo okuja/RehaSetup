@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.okujajoshua.reha.database.RehaUserDao
-import com.okujajoshua.reha.database.RehaUser
+import com.okujajoshua.reha.database.user.RehaUserDao
+import com.okujajoshua.reha.database.user.RehaUser
 import kotlinx.coroutines.*
 
 class ViewProfileViewModel(

@@ -17,179 +17,116 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/videoButton"
-            android:layout_width="263dp"
-            android:layout_height="60dp"
-            android:text="Video"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="364dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/textView6"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.452"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.998" />
+            app:layout_constraintTop_toBottomOf="@+id/group">
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="46dp"
+                android:layout_marginRight="10dp"
+                android:text="UGX"
+                android:textSize="36sp" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="176dp"
+                android:layout_height="47dp"
+                android:layout_gravity="end"
+                android:text="10,000,999"
+                android:textAlignment="textEnd"
+                android:textSize="36sp" />
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/view_transactions"
-            android:layout_width="263dp"
-            android:layout_height="60dp"
-            android:text="Transactions"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="364dp"
+            android:layout_height="wrap_content"
+            android:text="View Transactions"
+            app:layout_constraintBottom_toTopOf="@+id/cardButton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.452"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.779" />
+            app:layout_constraintTop_toBottomOf="@+id/sendmoney_button" />
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="33dp"
-            android:text="BALANCE"
+            android:text="MAIN BALANCE"
             android:textAlignment="center"
             android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/addmoney_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.244" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="192dp"
-            android:layout_height="47dp"
-            android:layout_gravity="end"
-            android:text="10,000,999"
-            android:textAlignment="textEnd"
-            android:textSize="36sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.694"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.328" />
-
-        <Button
-            android:id="@+id/verifyaccount_button"
-            android:layout_width="263dp"
-            android:layout_height="60dp"
-            android:text="VERIFY ACCOUNT"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.452"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.552" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
         <Button
             android:id="@+id/sendmoney_button"
-            android:layout_width="263dp"
-            android:layout_height="60dp"
-            android:text="SEND MONEY"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.452"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.667" />
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
-            android:layout_width="409dp"
+            android:layout_width="364dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="1dp"
-            android:layout_marginLeft="1dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginRight="1dp"
+            android:text="SEND MONEY"
+            app:layout_constraintBottom_toTopOf="@+id/view_transactions"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="CARD" />
-
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TRANSACTIONS" />
-        </com.google.android.material.tabs.TabLayout>
+            app:layout_constraintTop_toBottomOf="@+id/addmoney_button" />
 
         <Button
             android:id="@+id/addmoney_button"
-            android:layout_width="263dp"
-            android:layout_height="60dp"
+            android:layout_width="364dp"
+            android:layout_height="wrap_content"
             android:text="ADD MONEY"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/sendmoney_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.452"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.441" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="1234   5678   9102"
-            android:textSize="36sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.162" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="33dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="REHA CARD NO"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.089" />
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="84dp"
-            android:layout_height="46dp"
-            android:text="UGX"
-            android:textSize="36sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.174"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.327" />
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/group"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/overview"
-            android:layout_width="263dp"
-            android:layout_height="60dp"
-            android:text="Overview"
+            android:id="@+id/verifyaccount_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="VERIFY ACCOUNT"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.452"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.897" />
+            app:layout_constraintTop_toBottomOf="@+id/cardButton" />
+
+        <Button
+            android:id="@+id/cardButton"
+            android:layout_width="364dp"
+            android:layout_height="wrap_content"
+            android:text="Card"
+            app:layout_constraintBottom_toTopOf="@+id/verifyaccount_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_transactions" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </layout>

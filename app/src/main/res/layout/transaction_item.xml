@@ -6,7 +6,7 @@
     <data>
         <variable
             name="transaction"
-            type="com.okujajoshua.reha.database.Transaction" />
+            type="com.okujajoshua.reha.database.transaction.Transaction" />
 
         <variable
             name="clickListener"

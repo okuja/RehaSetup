@@ -3,13 +3,14 @@ package com.okujajoshua.reha.presentation.transactions.addmoney
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.okujajoshua.reha.database.Transaction
-import com.okujajoshua.reha.database.TransactionDao
+import com.okujajoshua.reha.database.transaction.Transaction
+import com.okujajoshua.reha.database.transaction.TransactionDao
 import kotlinx.coroutines.*
 
 class AddMoneyViewModel(
     val email: String,
-    private val dataSource: TransactionDao): ViewModel() {
+    private val dataSource: TransactionDao
+): ViewModel() {
 
     val _useremail = MutableLiveData<String>()
     val useremail: LiveData<String>
@@ -26,7 +27,8 @@ class AddMoneyViewModel(
 
     fun onSaveTransaction(email:String ,cardNumber:String,amount:String){
         uiScope.launch{
-            val newTransaction = Transaction()
+            val newTransaction =
+                Transaction()
             newTransaction.email = email
             newTransaction.cardNumber=cardNumber
             newTransaction.amount= amount

@@ -3,8 +3,8 @@ package com.okujajoshua.reha.presentation.signup
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.okujajoshua.reha.database.RehaUserDao
-import com.okujajoshua.reha.database.RehaUser
+import com.okujajoshua.reha.database.user.RehaUserDao
+import com.okujajoshua.reha.database.user.RehaUser
 import kotlinx.coroutines.*
 import timber.log.Timber
 
@@ -20,7 +20,13 @@ class SignUpViewModel(
     fun onCreateUser(email:String,first_name:String,second_name:String,telephone:String,password:String){
         uiScope.launch {
 
-            val newUser = RehaUser(email,first_name,second_name,telephone,password)
+            val newUser = RehaUser(
+                email,
+                first_name,
+                second_name,
+                telephone,
+                password
+            )
 
             Timber.i("User is %s %s %s %s",email,first_name,second_name,telephone)
 

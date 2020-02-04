@@ -3,7 +3,7 @@ package com.okujajoshua.reha.presentation.profile.viewprofile
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.okujajoshua.reha.database.RehaUserDao
+import com.okujajoshua.reha.database.user.RehaUserDao
 import java.lang.IllegalArgumentException
 
 class ViewProfileViewModelFactory(

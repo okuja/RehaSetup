@@ -4,8 +4,8 @@ package com.okujajoshua.reha.presentation.signin
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.okujajoshua.reha.database.RehaUserDao
-import com.okujajoshua.reha.database.RehaUser
+import com.okujajoshua.reha.database.user.RehaUserDao
+import com.okujajoshua.reha.database.user.RehaUser
 import kotlinx.coroutines.*
 
 class SigninViewModel(
@@ -37,7 +37,7 @@ class SigninViewModel(
         }
     }
 
-    private suspend fun getCurrentUserFromDatabase(email: String):RehaUser?{
+    private suspend fun getCurrentUserFromDatabase(email: String): RehaUser?{
         return withContext(Dispatchers.IO){
             var user = user.getuserbyemail(email)
             user

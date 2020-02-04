@@ -2,7 +2,7 @@ package com.okujajoshua.reha.presentation.transactions.viewtransactions
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.okujajoshua.reha.database.TransactionDao
+import com.okujajoshua.reha.database.transaction.TransactionDao
 import java.lang.IllegalArgumentException
 
 class ViewTransactionsViewModelFactoy (
