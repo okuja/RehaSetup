@@ -16,7 +16,8 @@ class CardViewModel (application: Application) :
     /**
      * The data source this ViewModel will fetch results from.
      */
-    private val cardsRepository = CardRepository()
+
+    private val cardsRepository = CardRepository(application)
 
     private val viewModelJob = SupervisorJob()
 
@@ -61,8 +62,9 @@ class CardViewModel (application: Application) :
                 _eventNetworkError.value = false
                 _isNetworkErrorShown.value = false
 
-            }catch (networkError:IOException){
+            }catch (networkError:Exception){
                 val x = networkError
+                networkError.printStackTrace()
                 _eventNetworkError.value = true
                 Timber.d("Error in creating card id")
             }

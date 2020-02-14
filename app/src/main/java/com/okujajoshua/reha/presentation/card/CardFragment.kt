@@ -35,7 +35,6 @@ class CardFragment : Fragment() {
         binding.setLifecycleOwner(viewLifecycleOwner)
 
         binding.cardViewModel = viewModel
-
         return binding.root
     }
 
