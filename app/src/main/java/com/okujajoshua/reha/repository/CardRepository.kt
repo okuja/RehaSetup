@@ -21,8 +21,6 @@ class CardRepository(application: Application) {
             val body = CardActivationBody(cardIdModel)
             val api = RehaApi.createApi(x)
             val response = api.createCardId(body)
-
-
         }
     }
 }

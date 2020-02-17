@@ -58,7 +58,8 @@ class CardViewModel (application: Application) :
     fun createCardId(){
         viewModelScope.launch {
             try {
-                cardsRepository.createCardId()
+                var cardid = cardsRepository.createCardId()
+
                 _eventNetworkError.value = false
                 _isNetworkErrorShown.value = false
 
