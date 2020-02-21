@@ -1,6 +1,7 @@
 package com.okujajoshua.reha
 import android.app.Application
 import android.os.Build
+import androidx.multidex.MultiDexApplication
 import androidx.work.*
 import com.okujajoshua.reha.work.RefreshDataWorker
 import kotlinx.coroutines.CoroutineScope
@@ -9,7 +10,7 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
-class RehaApplication : Application() {
+class RehaApplication : MultiDexApplication() {
 
     private val applicationScope = CoroutineScope(Dispatchers.Default)
 

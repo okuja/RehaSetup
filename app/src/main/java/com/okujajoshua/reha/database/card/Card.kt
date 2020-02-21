@@ -1,21 +1,22 @@
 package com.okujajoshua.reha.database.card
 
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
+import androidx.room.*
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 @Entity(tableName = "cards_table")
-data class DatabaseCard constructor(
+data class Card(
     @PrimaryKey
-    val cardid : String,
-    val pan : String,
-    val accounts: List<DatabaseAccount>
+    val cardId : String,
+    val pan: String,
+    @TypeConverters(AccountsConverter::class)
+    val accounts: List<Account>? = null
 )
 
-
-data class DatabaseAccount(
-    @PrimaryKey
+@JsonClass(generateAdapter = true)
+data class Account(
     val accountAliasId : String?,
     val accountNumber : String?,
     val accountTypeCode : String?,
@@ -23,13 +24,15 @@ data class DatabaseAccount(
     val institutionId : String?,
     val accountIndicatorCode: String?,
     val accountIndicatorDescription : String?,
-    val balances: DatabaseAccountsBalance?,
+    @TypeConverters(BalancesConverter::class)
+    val balances: Balance?,
     val isFunding : Boolean?,
     val isFundingComputed : Boolean?,
     val accountOpenedDate : String?
 )
 
-data class DatabaseAccountsBalance(
+@JsonClass(generateAdapter = true)
+data class Balance(
     @Embedded(prefix= "available_")
     val available : Available?,
     @Embedded(prefix="ledger_")
@@ -44,37 +47,70 @@ data class DatabaseAccountsBalance(
     val availableCredit : AvailableCredit?
 )
 
-
+@JsonClass(generateAdapter = true)
 data class Available (
     val amount : Float?,
     val currencyCode : String?
 )
 
+@JsonClass(generateAdapter = true)
 data class Ledger (
     val amount : Float?,
     val currencyCode : String?
 )
 
-
+@JsonClass(generateAdapter = true)
 data class AmountOwing (
     val amount : Float?,
     val currencyCode : String?
 )
 
-
+@JsonClass(generateAdapter = true)
 data class AmountDue (
     val amount : Float?,
     val currencyCode : String?
 )
 
-
+@JsonClass(generateAdapter = true)
 data class CreditLine (
     val amount : Float?,
     val currencyCode : String?
 )
 
-
+@JsonClass(generateAdapter = true)
 data class AvailableCredit (
     val amount : Float?,
     val currencyCode : String?
 )
+
+
+
+class AccountsConverter {
+
+    @TypeConverter
+    fun stringToList(value: String): List<Account> {
+        val listAccounts =
+            object : TypeToken<List<Account?>?>() {}.type
+        return Gson().fromJson(value, listAccounts)
+    }
+
+    @TypeConverter
+    fun listToString(list: List<Account>): String {
+        val gson = Gson()
+        return gson.toJson(list)
+    }
+}
+
+class BalancesConverter{
+    @TypeConverter
+    fun stringToBalance(value: String): Balance {
+        val balance = object:TypeToken<Balance?>() {}.type
+        return Gson().fromJson(value,balance)
+    }
+
+    @TypeConverter
+    fun balanceToString(balance : Balance) : String{
+        val gson = Gson()
+        return gson.toJson(balance)
+    }
+}

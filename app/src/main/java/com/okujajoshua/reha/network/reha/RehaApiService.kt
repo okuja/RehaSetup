@@ -55,16 +55,6 @@ object RehaApi {
     fun createApi(application: Application): RehaApiService {
         val okHttpClient = getSSLClient(application.applicationContext)
 
-//    val okHttpClient = OkHttpClient().newBuilder()
-//        .addInterceptor(SupportInterceptor())
-//        .addInterceptor(
-//            AuthenticationInterceptor(
-//                "6RJFA882DAP8EVRXX0LF21SDimfoRH_QTNLI3vXZ6Hv4eLkKY",
-//                "A5V626fGhA64Yr6EC1n8iMGJOH"
-//            )
-//        )
-//        .build()
-
         val moshi = Moshi.Builder()
             .add(KotlinJsonAdapterFactory())
             .build()
@@ -79,7 +69,6 @@ object RehaApi {
         return rehaApiService
 
     }
-
 
 }
 
@@ -155,35 +144,13 @@ fun getSSLClient(context: Context): OkHttpClient? {
 
 private fun readKeyStore(context: Context): KeyStore? {
 
-    val cf: CertificateFactory = CertificateFactory.getInstance("X.509")
-    val clientCertificateInputStream: InputStream =
-        BufferedInputStream(context.resources.openRawResource(R.raw.cert))
-
-    val privateKeyCertificateInputStream: InputStream =
-        BufferedInputStream(context.resources.openRawResource(R.raw.key_visa))
-
     val privateKeyClientCertificateBundleInputStream: InputStream =
         BufferedInputStream(context.resources.openRawResource(R.raw.rehacertkeybundle1))
-
-
-    val clientCertificate: X509Certificate = clientCertificateInputStream.use {
-        cf.generateCertificate(it) as X509Certificate
-    }
-
-//    val privateKeyCertificate: X509Certificate = privateKeyCertificateInputStream.use {
-//        cf.generateCertificate(it) as X509Certificate
-//    }
 
     val keyStore: KeyStore = KeyStore.getInstance("pkcs12")
 
     try {
-
         keyStore.load(privateKeyClientCertificateBundleInputStream,"Bumblebee".toCharArray())
-//        keyStore.apply {
-//            load(privateKeyClientCertificateBundleInputStream,"Platea".toCharArray())
-//            //setCertificateEntry("client certificate",clientCertificate)
-////            setCertificateEntry("private key certificate",privateKeyCertificate)
-//        }
     } catch (e: Exception) {
         var x = e
         e.printStackTrace()

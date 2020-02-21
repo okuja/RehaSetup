@@ -2,6 +2,8 @@ package com.okujajoshua.reha.presentation.card
 
 import android.app.Application
 import androidx.lifecycle.*
+import com.amitshekhar.DebugDB
+import com.okujajoshua.reha.database.RehaDatabase
 import com.okujajoshua.reha.repository.CardRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -17,11 +19,13 @@ class CardViewModel (application: Application) :
      * The data source this ViewModel will fetch results from.
      */
 
-    private val cardsRepository = CardRepository(application)
+    private val cardsRepository = CardRepository(RehaDatabase.getInstance(application),application)
 
     private val viewModelJob = SupervisorJob()
 
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+
+    //private val cards = cardsRepository.cards
 
     /**
      * Event triggered for network error. Views should use this to get access
@@ -51,6 +55,12 @@ class CardViewModel (application: Application) :
     private var _eventNetworkError = MutableLiveData<Boolean>(false)
 
 
+
+    init {
+        refreshDataFromRepository()
+    }
+
+
     /**
      * Function for creating card ID
      */
@@ -59,7 +69,7 @@ class CardViewModel (application: Application) :
         viewModelScope.launch {
             try {
                 var cardid = cardsRepository.createCardId()
-
+                Timber.d("%s", DebugDB.getAddressLog())
                 _eventNetworkError.value = false
                 _isNetworkErrorShown.value = false
 
@@ -72,6 +82,24 @@ class CardViewModel (application: Application) :
         }
     }
 
+    fun refreshDataFromRepository(){
+        viewModelScope.launch {
+            try {
+                var cards = cardsRepository.refreshCards()
+                var x = cards.size
+                Timber.d("Size is %d",x)
+                _eventNetworkError.value = false
+                _isNetworkErrorShown.value = false
+
+            } catch (networkError: IOException) {
+                val x = networkError
+                networkError.printStackTrace()
+                // Show a Toast error message and hide the progress bar.
+//                if(cards.isEmpty())
+//                    _eventNetworkError.value = true
+            }
+        }
+    }
 
 
     /**

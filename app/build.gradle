@@ -30,6 +30,7 @@ android {
                 jvmTarget = JavaVersion.VERSION_1_8.toString()
             }
         }
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -92,4 +93,12 @@ dependencies {
 
     //okhttp
     implementation 'com.squareup.okhttp3:okhttp:3.14.4'
+
+    //gson
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+    //multidex
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 }
