@@ -25,7 +25,13 @@ class CardViewModel (application: Application) :
 
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    //private val cards = cardsRepository.cards
+    val cards = cardsRepository.cards
+
+    /**
+     * Event triggered for network error. This is private to avoid exposing a
+     * way to set this value to observers.
+     */
+    private var _eventNetworkError = MutableLiveData<Boolean>(false)
 
     /**
      * Event triggered for network error. Views should use this to get access
@@ -48,13 +54,6 @@ class CardViewModel (application: Application) :
         get() = _isNetworkErrorShown
 
 
-    /**
-     * Event triggered for network error. This is private to avoid exposing a
-     * way to set this value to observers.
-     */
-    private var _eventNetworkError = MutableLiveData<Boolean>(false)
-
-
 
     init {
         refreshDataFromRepository()
@@ -68,8 +67,7 @@ class CardViewModel (application: Application) :
     fun createCardId(){
         viewModelScope.launch {
             try {
-                var cardid = cardsRepository.createCardId()
-                Timber.d("%s", DebugDB.getAddressLog())
+                cardsRepository.createCardId()
                 _eventNetworkError.value = false
                 _isNetworkErrorShown.value = false
 
@@ -85,9 +83,7 @@ class CardViewModel (application: Application) :
     fun refreshDataFromRepository(){
         viewModelScope.launch {
             try {
-                var cards = cardsRepository.refreshCards()
-                var x = cards.size
-                Timber.d("Size is %d",x)
+                cardsRepository.refreshCards()
                 _eventNetworkError.value = false
                 _isNetworkErrorShown.value = false
 
@@ -95,8 +91,8 @@ class CardViewModel (application: Application) :
                 val x = networkError
                 networkError.printStackTrace()
                 // Show a Toast error message and hide the progress bar.
-//                if(cards.isEmpty())
-//                    _eventNetworkError.value = true
+                if(cards.value!!.isEmpty())
+                    _eventNetworkError.value = true
             }
         }
     }

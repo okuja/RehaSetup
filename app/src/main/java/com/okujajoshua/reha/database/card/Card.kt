@@ -3,6 +3,7 @@ package com.okujajoshua.reha.database.card
 import androidx.room.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.okujajoshua.reha.domain.DomainCard
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
@@ -83,8 +84,6 @@ data class AvailableCredit (
     val currencyCode : String?
 )
 
-
-
 class AccountsConverter {
 
     @TypeConverter
@@ -113,4 +112,17 @@ class BalancesConverter{
         val gson = Gson()
         return gson.toJson(balance)
     }
+}
+
+
+fun List<Card>.asDomainModel() : List<DomainCard>{
+
+    return map{
+        DomainCard(
+            cardId = it.cardId,
+            pan = it.pan,
+            accounts = it.accounts
+        )
+    }
+
 }

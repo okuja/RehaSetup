@@ -1,5 +1,16 @@
 package com.okujajoshua.reha.domain
 
-class Card {
-}
+
+import com.okujajoshua.reha.database.card.Account
+
+class DomainCard(
+    val cardId : String,
+    val pan: String,
+    val accounts: List<Account>?
+)
+
+
+
+
+
 

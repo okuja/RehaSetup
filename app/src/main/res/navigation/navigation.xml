@@ -27,8 +27,8 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
-            android:id="@+id/action_signinFragment_to_balanceFragment"
-            app:destination="@id/balanceFragment" />
+            android:id="@+id/action_signinFragment_to_cardFragment"
+            app:destination="@id/cardFragment" />
     </fragment>
     <fragment
         android:id="@+id/signupFragment"
@@ -47,12 +47,6 @@
         <action
             android:id="@+id/action_balanceFragment_to_viewTransactionsFragment"
             app:destination="@id/viewTransactionsFragment" />
-        <action
-            android:id="@+id/action_balanceFragment_to_viewProfileFragment"
-            app:destination="@id/viewProfileFragment" />
-        <action
-            android:id="@+id/action_balanceFragment_to_verificationFragment"
-            app:destination="@id/navigation2" />
         <argument
             android:name="email"
             app:argType="string" />
@@ -62,9 +56,6 @@
         <action
             android:id="@+id/action_balanceFragment_to_addMoneyFragment"
             app:destination="@id/addMoneyFragment" />
-        <action
-            android:id="@+id/action_balanceFragment_to_cardFragment"
-            app:destination="@id/cardFragment" />
         <argument
             android:name="password"
             app:argType="string" />
@@ -148,11 +139,10 @@
             android:id="@+id/selfieFragment"
             android:name="com.okujajoshua.reha.presentation.verification.selfie.SelfieFragment"
             android:label="fragment_selfie"
-            tools:layout="@layout/fragment_selfie">
-            <action
-                android:id="@+id/action_selfieFragment_to_balanceFragment"
-                app:destination="@id/balanceFragment" />
-        </fragment>
+            tools:layout="@layout/fragment_selfie"/>
+        <action
+            android:id="@+id/action_global_cardFragment"
+            app:destination="@id/cardFragment" />
     </navigation>
     <fragment
         android:id="@+id/optionsFragment"
@@ -172,20 +162,17 @@
         android:label="fragment_card"
         tools:layout="@layout/fragment_card" >
         <action
-            android:id="@+id/action_cardFragment_to_cardDetailFragment"
-            app:destination="@id/cardDetailFragment" />
-        <action
             android:id="@+id/action_cardFragment_to_optionsFragment"
             app:destination="@id/optionsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/cardDetailFragment"
-        android:name="com.okujajoshua.reha.presentation.carddetail.CardDetailFragment"
-        android:label="fragment_card_detail"
-        tools:layout="@layout/fragment_card_detail" >
         <action
-            android:id="@+id/action_cardDetailFragment_to_cardFragment"
-            app:destination="@id/cardFragment" />
+            android:id="@+id/action_cardFragment_to_balanceFragment"
+            app:destination="@id/balanceFragment" />
+        <action
+            android:id="@+id/action_cardFragment_to_viewProfileFragment"
+            app:destination="@id/viewProfileFragment" />
+        <action
+            android:id="@+id/action_cardFragment_to_navigation2"
+            app:destination="@id/navigation2" />
     </fragment>
     <fragment
         android:id="@+id/optionPhoneFragment"

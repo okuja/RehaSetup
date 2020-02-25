@@ -10,7 +10,7 @@ import androidx.room.Query
 interface CardDao {
 
     @Query("select * from cards_table")
-    fun getAllCards(): List<Card>
+    fun getAllCards(): LiveData<List<Card>>
 
     @Query("select * from cards_table where cardId = :cardid")
     fun getCardById(cardid :  String): LiveData<Card>
