@@ -6,6 +6,7 @@ import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -25,21 +26,19 @@ class BalanceFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val application = requireNotNull(activity).application
+
         // Inflate the layout for this fragment
         val binding : FragmentBalanceBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_balance,container, false)
 
-
         //from navigation argument bundle
         val args = BalanceFragmentArgs.fromBundle(arguments!!)
-//        Toast.makeText(context, "Email: ${args.email}, Password: ${args.password}", Toast.LENGTH_LONG).show()
-
 
         //initialize viewmodelfactory
-        viewModelFactory = BalanceViewModelFactory(args.email,args.password)
+        viewModelFactory = BalanceViewModelFactory(args.cardId,application)
 
         //initialize viewmodel object
         viewModel = ViewModelProviders.of(this,viewModelFactory).get(BalanceViewModel::class.java)
-        Toast.makeText(context, "Email: ${viewModel.email.value}, Password: ${viewModel.password.value}", Toast.LENGTH_LONG).show()
 
         // Set the viewmodel for databinding - this allows the bound layout access
         // to all the data in the ViewModel
@@ -57,14 +56,9 @@ class BalanceFragment : Fragment() {
 
         binding.sendmoneyButton.setOnClickListener{view: View ->
             view.findNavController().navigate(
-               BalanceFragmentDirections.actionBalanceFragmentToAddMoneyFragment(args.email,"Send Money")
+               BalanceFragmentDirections.actionBalanceFragmentToAddMoneyFragment(args.cardId,"Send Money")
             )
         }
-
-        binding.verifyaccountButton.setOnClickListener{view: View ->
-            view.findNavController().navigate(R.id.action_balanceFragment_to_verificationFragment)
-        }
-
 
         binding.viewTransactions.setOnClickListener { view: View ->
             view.findNavController().navigate(
@@ -72,29 +66,22 @@ class BalanceFragment : Fragment() {
             )
         }
 
-        binding.cardButton.setOnClickListener{ view : View ->
-            view.findNavController().navigate(R.id.action_balanceFragment_to_cardFragment)
-
-        }
-
-        setHasOptionsMenu(true)
+        // Observer for the network error.
+        viewModel.eventNetworkError.observe(this, Observer<Boolean> { isNetworkError ->
+            if (isNetworkError) onNetworkError()
+        })
 
 
         return binding.root
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater?.inflate(R.menu.options_menu, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        when (item!!.itemId) {
-            R.id.viewProfileFragment ->  view!!.findNavController().navigate(R.id.action_balanceFragment_to_viewProfileFragment)
+    /**
+     * Method for displaying a Toast error message for network errors.
+     */
+    private fun onNetworkError() {
+        if(!viewModel.isNetworkErrorShown.value!!) {
+            Toast.makeText(activity, "Network Error", Toast.LENGTH_LONG).show()
+            viewModel.onNetworkErrorShown()
         }
-        return super.onOptionsItemSelected(item)
     }
-
-
 }

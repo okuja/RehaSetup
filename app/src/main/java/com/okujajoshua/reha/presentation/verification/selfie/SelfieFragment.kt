@@ -6,8 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 
 import com.okujajoshua.reha.R
+import com.okujajoshua.reha.databinding.FragmentSelfieBinding
 
 /**
  * A simple [Fragment] subclass.
@@ -19,7 +22,17 @@ class SelfieFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_selfie, container, false)
+        val binding : FragmentSelfieBinding =
+            DataBindingUtil.inflate(inflater,R.layout.fragment_selfie, container, false)
+
+        binding.finishButton.setOnClickListener { view:View->
+            view.findNavController().navigate(
+                //TODO: Make the email dynamic
+                SelfieFragmentDirections.actionSelfieFragmentToCardFragment("ajokuja@gmail.com")
+            )
+        }
+
+        return binding.root
     }
 
 

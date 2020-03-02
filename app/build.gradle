@@ -100,5 +100,7 @@ dependencies {
     //multidex
     implementation 'androidx.multidex:multidex:2.0.1'
 
-    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
+    implementation 'com.google.android.material:material:1.2.0-alpha05'
+
+    //debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 }

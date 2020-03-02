@@ -3,126 +3,134 @@ package com.okujajoshua.reha.database.card
 import androidx.room.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.okujajoshua.reha.domain.DomainAccount
+import com.okujajoshua.reha.domain.DomainBalance
 import com.okujajoshua.reha.domain.DomainCard
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 @Entity(tableName = "cards_table")
-data class Card(
+data class DatabaseCard(
     @PrimaryKey
     val cardId : String,
-    val pan: String,
-    @TypeConverters(AccountsConverter::class)
-    val accounts: List<Account>? = null
+    val pan: String
 )
 
 @JsonClass(generateAdapter = true)
-data class Account(
-    val accountAliasId : String?,
+@Entity(tableName = "accounts_table")
+data class DatabaseAccount(
+    val cardId: String,
+    @PrimaryKey
+    val accountAliasId : String,
     val accountNumber : String?,
     val accountTypeCode : String?,
     val accountTypeDescription:String?,
     val institutionId : String?,
     val accountIndicatorCode: String?,
     val accountIndicatorDescription : String?,
-    @TypeConverters(BalancesConverter::class)
-    val balances: Balance?,
     val isFunding : Boolean?,
     val isFundingComputed : Boolean?,
     val accountOpenedDate : String?
 )
 
 @JsonClass(generateAdapter = true)
-data class Balance(
-    @Embedded(prefix= "available_")
-    val available : Available?,
-    @Embedded(prefix="ledger_")
-    val ledger : Ledger?,
-    @Embedded(prefix="amountowing_")
-    val amountOwing : AmountOwing? ,
-    @Embedded(prefix="amountdue_")
-    val amountDue : AmountDue? ,
-    @Embedded(prefix="creditline_")
-    val creditLine : CreditLine? ,
-    @Embedded(prefix = "availablecredit_")
-    val availableCredit : AvailableCredit?
+@Entity(tableName = "balance_table")
+data class DatabaseBalance(
+    @PrimaryKey
+    val accountAliasId: String,
+    val availableAmount :  Float?,
+    val availableCurrencyCode:String?,
+    val ledgerAmount :  Float?,
+    val ledgerCurrencyCode:String?,
+    val amountOwingAmount :  Float?,
+    val amountOwingCurrencyCode:String?,
+    val amountDueAmount :  Float?,
+    val amountDueCurrencyCode:String?,
+    val creditLineAmount :  Float?,
+    val creditLineCurrencyCode:String?,
+    val availableCreditAmount :  Float?,
+    val availableCreditCurrencyCode:String?
 )
 
-@JsonClass(generateAdapter = true)
-data class Available (
-    val amount : Float?,
-    val currencyCode : String?
-)
-
-@JsonClass(generateAdapter = true)
-data class Ledger (
-    val amount : Float?,
-    val currencyCode : String?
-)
-
-@JsonClass(generateAdapter = true)
-data class AmountOwing (
-    val amount : Float?,
-    val currencyCode : String?
-)
-
-@JsonClass(generateAdapter = true)
-data class AmountDue (
-    val amount : Float?,
-    val currencyCode : String?
-)
-
-@JsonClass(generateAdapter = true)
-data class CreditLine (
-    val amount : Float?,
-    val currencyCode : String?
-)
-
-@JsonClass(generateAdapter = true)
-data class AvailableCredit (
-    val amount : Float?,
-    val currencyCode : String?
-)
-
-class AccountsConverter {
-
-    @TypeConverter
-    fun stringToList(value: String): List<Account> {
-        val listAccounts =
-            object : TypeToken<List<Account?>?>() {}.type
-        return Gson().fromJson(value, listAccounts)
-    }
-
-    @TypeConverter
-    fun listToString(list: List<Account>): String {
-        val gson = Gson()
-        return gson.toJson(list)
-    }
-}
-
-class BalancesConverter{
-    @TypeConverter
-    fun stringToBalance(value: String): Balance {
-        val balance = object:TypeToken<Balance?>() {}.type
-        return Gson().fromJson(value,balance)
-    }
-
-    @TypeConverter
-    fun balanceToString(balance : Balance) : String{
-        val gson = Gson()
-        return gson.toJson(balance)
-    }
-}
 
 
-fun List<Card>.asDomainModel() : List<DomainCard>{
+fun List<DatabaseCard>.asDomainModel() : List<DomainCard>{
 
     return map{
         DomainCard(
             cardId = it.cardId,
-            pan = it.pan,
-            accounts = it.accounts
+            pan = it.pan
+        )
+    }
+}
+fun DatabaseCard.asDomainModel() : DomainCard{
+
+    return DomainCard(
+            cardId = cardId,
+            pan = pan
+        )
+}
+
+
+
+fun List<DatabaseAccount>.asDomainAccount(cardId: String) : List<DomainAccount>{
+    return map{
+        DomainAccount(
+            cardId = cardId,
+            accountAliasId = it.accountAliasId,
+            accountNumber = it.accountNumber,
+            accountTypeCode = it.accountTypeCode,
+            accountTypeDescription = it.accountTypeDescription,
+            institutionId = it.institutionId,
+            accountIndicatorCode = it.accountIndicatorCode,
+            accountIndicatorDescription = it.accountIndicatorDescription,
+            isFunding =  it.isFunding,
+            isFundingComputed = it.isFundingComputed,
+            accountOpenedDate = it.accountOpenedDate
+        )
+    }
+}
+
+fun DatabaseBalance.asDomainBalance(accountAliasId: String?) : DomainBalance{
+
+    return DomainBalance(
+        accountAliasId = accountAliasId,
+        availableAmount = availableAmount,
+        availableCurrencyCode = availableCurrencyCode,
+        ledgerAmount = ledgerAmount,
+        ledgerCurrencyCode = ledgerCurrencyCode,
+        amountOwingAmount = amountOwingAmount,
+        amountOwingCurrencyCode = amountOwingCurrencyCode,
+        amountDueAmount = amountDueAmount,
+        amountDueCurrencyCode = amountDueCurrencyCode,
+        creditLineAmount = creditLineAmount,
+        creditLineCurrencyCode = creditLineCurrencyCode,
+        availableCreditAmount = availableCreditAmount,
+        availableCreditCurrencyCode = availableCreditCurrencyCode
+    )
+}
+
+fun List<DatabaseBalance>.asDomainBalance(accountAliasId: String?) : List<DomainBalance>{
+
+    return map{
+        DomainBalance(
+            accountAliasId = accountAliasId,
+            availableAmount = it.availableAmount,
+            availableCurrencyCode = it.availableCurrencyCode,
+            ledgerAmount = it.ledgerAmount,
+            ledgerCurrencyCode = it.ledgerCurrencyCode,
+            amountOwingAmount = it.amountOwingAmount,
+            amountOwingCurrencyCode = it.amountOwingCurrencyCode,
+            amountDueAmount = it.amountDueAmount,
+            amountDueCurrencyCode = it.amountDueCurrencyCode,
+            creditLineAmount = it.creditLineAmount,
+            creditLineCurrencyCode = it.creditLineCurrencyCode,
+            availableCreditAmount = it.availableCreditAmount,
+            availableCreditCurrencyCode = it.availableCreditCurrencyCode
         )
     }
 
 }
+
+
+

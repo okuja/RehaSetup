@@ -1,9 +1,9 @@
-package com.okujajoshua.reha.network.reha.card
+package com.okujajoshua.reha.network.reha.card.request
 
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class CardActivationBody(
+data class CardCreationBody(
     val cardIdModel : List<CardIdModel>
 )
 
@@ -12,3 +12,6 @@ data class CardIdModel(
     val pan : String,
     val lookUpBalances: Boolean = true
 )
+
+
+

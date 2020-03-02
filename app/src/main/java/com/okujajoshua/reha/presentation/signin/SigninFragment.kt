@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -29,6 +30,7 @@ class SigninFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (activity as AppCompatActivity).supportActionBar?.show()
         val binding: FragmentSigninBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_signin,container, false)
 
         val application = requireNotNull(this.activity).application
@@ -46,7 +48,7 @@ class SigninFragment : Fragment() {
         signinViewModel.navigateToBalance.observe(this, Observer{
             if(it == true){
                 this.findNavController().navigate(
-                    SigninFragmentDirections.actionSigninFragmentToBalanceFragment(signinViewModel.currentuser.value!!.email,signinViewModel.currentuser.value!!.password))
+                    SigninFragmentDirections.actionSigninFragmentToCardFragment(signinViewModel.currentuser.value!!.email))
                 signinViewModel.doneNavigating()
             }
         })

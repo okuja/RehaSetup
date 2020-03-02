@@ -1,10 +1,10 @@
 package com.okujajoshua.reha.domain
 
-
+//TODO: Handle user verification status
 data class User (
-    var id:Long,
-    var userId:Long,
-    var name: String = "",
-    var cardno: String = "",
-    var balance: String = ""
+    val firstName: String,
+    val secondName : String,
+    val email : String,
+    val phoneNumber:String,
+    val verificationStatus:Boolean = false
 )

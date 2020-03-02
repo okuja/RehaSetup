@@ -16,12 +16,12 @@ interface RehaUserDao {
     fun updateuser(user: RehaUser)
 
     @Query("SELECT * FROM reha_user_table WHERE user_email = :email")
-    fun getuserbyemail(email: String): RehaUser?
+    fun getuserbyemail(email: String): RehaUser
 
 
     @Query("DELETE FROM reha_user_table")
     fun clear()
-    
+
 
 
 }

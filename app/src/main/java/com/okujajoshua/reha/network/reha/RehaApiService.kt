@@ -3,11 +3,12 @@ package com.okujajoshua.reha.network.reha
 
 import android.app.Application
 import android.content.Context
-import android.content.res.Resources
 import com.okujajoshua.reha.R
-import com.okujajoshua.reha.RehaApplication
-import com.okujajoshua.reha.network.reha.card.CardActivationBody
-import com.okujajoshua.reha.network.reha.card.CreateCardIdResponse
+import com.okujajoshua.reha.network.reha.card.request.CardActivationBody
+import com.okujajoshua.reha.network.reha.card.response.CardActivationResponse
+import com.okujajoshua.reha.network.reha.card.request.CardCreationBody
+import com.okujajoshua.reha.network.reha.card.response.CreateCardIdResponse
+import com.okujajoshua.reha.network.reha.card.response.GetCardAndAccountDetailsResponse
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.Credentials
@@ -16,10 +17,8 @@ import okhttp3.OkHttpClient
 import okhttp3.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.POST
+import retrofit2.http.*
 import java.io.BufferedInputStream
-import java.io.FileInputStream
 import java.io.IOException
 import java.io.InputStream
 import java.security.KeyManagementException
@@ -27,11 +26,8 @@ import java.security.KeyStore
 import java.security.KeyStoreException
 import java.security.NoSuchAlgorithmException
 import java.security.cert.CertificateException
-import java.security.cert.CertificateFactory
-import java.security.cert.X509Certificate
 import java.util.*
 import javax.net.ssl.*
-import kotlin.collections.ArrayList
 
 
 private const val BASE_URL =
@@ -40,12 +36,16 @@ private const val BASE_URL =
 interface RehaApiService {
 
     @POST("dcas/cardservices/v1/cards")
-    suspend fun createCardId(@Body body: CardActivationBody): CreateCardIdResponse
+    suspend fun createCardId(@Body body: CardCreationBody): CreateCardIdResponse
 
+    @GET("dcas/cardservices/v1/cards/{cardId}")
+    suspend fun getCardAndAccountDetails(@Path("cardId") cardId: String, @Query("lookUpBalances") lookUpBalances:Boolean): GetCardAndAccountDetailsResponse
 
     //here we shall implement the calls to the reha api
-//    @POST("/card/{cardId}/cardactivation")
-//    fun cardActivation(@Path("cardId") cardId: String, @Body user: User?): Call<User?>?
+    //TODO:Add APP ID
+    @Headers("App-ID: max-age=640000")
+    @POST("dcas/cardservices/v1/cardservices/v1/cards/{cardId}/cardactivation")
+    suspend  fun cardActivation(@Path("cardId") cardId: String, @Body body: CardActivationBody): CardActivationResponse
 
 }
 

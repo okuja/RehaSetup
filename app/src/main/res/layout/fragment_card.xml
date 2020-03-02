@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
+
         <variable
             name="cardViewModel"
             type="com.okujajoshua.reha.presentation.card.CardViewModel" />
@@ -11,65 +13,52 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/frameLayout2"
+        android:id="@+id/card_fragment_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".presentation.card.CardFragment">
 
-        <Button
-            android:id="@+id/refreshCard"
-            android:layout_width="258dp"
-            android:layout_height="45dp"
-            android:onClick="@{()->cardViewModel.refreshDataFromRepository()}"
-            android:text="Refresh Card"
-            app:layout_constraintBottom_toTopOf="@+id/newCard"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frameLayout4" />
-
-        <Button
-            android:id="@+id/newCard"
-            android:layout_width="258dp"
-            android:layout_height="45dp"
-            android:onClick="@{()->cardViewModel.createCardId()}"
-            android:text="Add Card"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/refreshCard" />
-
         <FrameLayout
-            android:id="@+id/frameLayout4"
+            android:id="@+id/recycler_view_frame_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/background_grey"
-            app:layout_constraintBottom_toTopOf="@+id/refreshCard"
+            android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ProgressBar
-                android:id="@+id/loading_spinner"
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingActionButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                app:isNetworkError="@{safeUnbox(cardViewModel.eventNetworkError)}"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{()->cardViewModel.createCardId()}"
+                app:srcCompat="@android:drawable/ic_input_add"
+                android:visibility="@{cardViewModel.user.verificationStatus ? View.VISIBLE: View.GONE}"/>
+
+            <Button
+                android:id="@+id/verify_account_button"
+                android:layout_width="258dp"
+                android:layout_height="45dp"
+                android:text="Verify Account "
+                android:visibility="@{cardViewModel.user.verificationStatus? View.GONE: View.VISIBLE}"
+                android:layout_gravity="center|bottom"/>
 
 
-                app:requestedData="@{cardViewModel.cards}" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/cards_list"
-                android:layout_width="409dp"
-                android:layout_height="542dp"
-                app:layout_constraintBottom_toTopOf="@+id/refreshCard"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+            </androidx.recyclerview.widget.RecyclerView>
 
         </FrameLayout>
 

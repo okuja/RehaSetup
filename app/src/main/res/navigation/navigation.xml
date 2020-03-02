@@ -9,7 +9,7 @@
         android:id="@+id/splashScreenFragment"
         android:name="com.okujajoshua.reha.presentation.splash.SplashScreenFragment"
         android:label="SplashScreenFragment"
-        tools:layout="@layout/fragment_splash_screen" >
+        tools:layout="@layout/fragment_splash_screen">
         <action
             android:id="@+id/action_splashScreenFragment_to_signinFragment"
             app:destination="@id/signinFragment"
@@ -20,21 +20,27 @@
         android:id="@+id/signinFragment"
         android:name="com.okujajoshua.reha.presentation.signin.SigninFragment"
         android:label="SigninFragment"
-        tools:layout="@layout/fragment_signin" >
+        tools:layout="@layout/fragment_signin">
         <action
             android:id="@+id/action_signinFragment_to_signupFragment"
             app:destination="@id/signupFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_signinFragment_to_cardFragment"
-            app:destination="@id/cardFragment" />
+            app:destination="@id/cardFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/signupFragment"
         android:name="com.okujajoshua.reha.presentation.signup.SignupFragment"
         android:label="fragment_signup"
-        tools:layout="@layout/fragment_signup" >
+        tools:layout="@layout/fragment_signup">
         <action
             android:id="@+id/action_signupFragment_to_signinFragment"
             app:destination="@id/signinFragment" />
@@ -43,34 +49,47 @@
         android:id="@+id/balanceFragment"
         android:name="com.okujajoshua.reha.presentation.transactions.balance.BalanceFragment"
         android:label="fragment_balance"
-        tools:layout="@layout/fragment_balance" >
+        tools:layout="@layout/fragment_balance">
         <action
             android:id="@+id/action_balanceFragment_to_viewTransactionsFragment"
-            app:destination="@id/viewTransactionsFragment" />
-        <argument
-            android:name="email"
-            app:argType="string" />
+            app:destination="@id/viewTransactionsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_balanceFragment_to_optionsFragment"
-            app:destination="@id/optionsFragment" />
+            app:destination="@id/optionsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_balanceFragment_to_addMoneyFragment"
-            app:destination="@id/addMoneyFragment" />
+            app:destination="@id/addMoneyFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <argument
-            android:name="password"
+            android:name="cardId"
             app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/addMoneyFragment"
         android:name="com.okujajoshua.reha.presentation.transactions.addmoney.AddMoneyFragment"
         android:label="fragment_add_money"
-        tools:layout="@layout/fragment_add_money" >
+        tools:layout="@layout/fragment_add_money">
         <argument
             android:name="email"
             app:argType="string" />
         <action
             android:id="@+id/action_addMoneyFragment_to_amountFragment"
-            app:destination="@id/amountFragment" />
+            app:destination="@id/amountFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <argument
             android:name="transactionType"
             app:argType="string" />
@@ -79,117 +98,179 @@
         android:id="@+id/viewTransactionsFragment"
         android:name="com.okujajoshua.reha.presentation.transactions.viewtransactions.ViewTransactionsFragment"
         android:label="fragment_view_transactions"
-        tools:layout="@layout/fragment_view_transactions" >
+        tools:layout="@layout/fragment_view_transactions">
         <action
             android:id="@+id/action_viewTransactionsFragment_to_transactionDetailFragment"
-            app:destination="@id/transactionDetailFragment" />
+            app:destination="@id/transactionDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/viewProfileFragment"
         android:name="com.okujajoshua.reha.presentation.profile.viewprofile.ViewProfileFragment"
         android:label="fragment_view_profile"
-        tools:layout="@layout/fragment_view_profile" >
+        tools:layout="@layout/fragment_view_profile">
         <action
             android:id="@+id/action_viewProfileFragment_to_editProfileFragment"
-            app:destination="@id/editProfileFragment" />
+            app:destination="@id/editProfileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.okujajoshua.reha.presentation.profile.editprofile.EditProfileFragment"
         android:label="fragment_edit_profile"
-        tools:layout="@layout/fragment_edit_profile" >
+        tools:layout="@layout/fragment_edit_profile">
         <action
             android:id="@+id/action_editProfileFragment_to_viewProfileFragment"
-            app:destination="@id/viewProfileFragment" />
+            app:destination="@id/viewProfileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/transactionDetailFragment"
         android:name="com.okujajoshua.reha.presentation.transactions.transactiondetails.TransactionDetailFragment"
         android:label="fragment_transaction_detail"
-        tools:layout="@layout/fragment_transaction_detail" >
+        tools:layout="@layout/fragment_transaction_detail">
         <action
             android:id="@+id/action_transactionDetailFragment_to_viewTransactionsFragment"
-            app:destination="@id/viewTransactionsFragment" />
+            app:destination="@id/viewTransactionsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <argument
             android:name="transactionId"
             app:argType="integer" />
     </fragment>
-    <navigation
-        android:id="@+id/navigation2"
-        app:startDestination="@id/verificationFragment" >
-        <fragment
-            android:id="@+id/verificationFragment"
-            android:name="com.okujajoshua.reha.presentation.verification.documentdetails.VerificationFragment"
-            android:label="fragment_verification"
-            tools:layout="@layout/fragment_verification">
-            <action
-                android:id="@+id/action_verificationFragment_to_identificationFragment"
-                app:destination="@id/identificationFragment" />
-        </fragment>
-        <fragment
-            android:id="@+id/identificationFragment"
-            android:name="com.okujajoshua.reha.presentation.verification.identification.IdentificationFragment"
-            android:label="fragment_identification"
-            tools:layout="@layout/fragment_identification">
-            <action
-                android:id="@+id/action_identificationFragment_to_selfieFragment"
-                app:destination="@id/selfieFragment" />
-        </fragment>
-        <fragment
-            android:id="@+id/selfieFragment"
-            android:name="com.okujajoshua.reha.presentation.verification.selfie.SelfieFragment"
-            android:label="fragment_selfie"
-            tools:layout="@layout/fragment_selfie"/>
+
+    <fragment
+        android:id="@+id/verificationFragment"
+        android:name="com.okujajoshua.reha.presentation.verification.documentdetails.VerificationFragment"
+        android:label="fragment_verification"
+        tools:layout="@layout/fragment_verification">
         <action
-            android:id="@+id/action_global_cardFragment"
-            app:destination="@id/cardFragment" />
-    </navigation>
+            android:id="@+id/action_verificationFragment_to_identificationFragment"
+            app:destination="@id/identificationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/identificationFragment"
+        android:name="com.okujajoshua.reha.presentation.verification.identification.IdentificationFragment"
+        android:label="fragment_identification"
+        tools:layout="@layout/fragment_identification">
+        <action
+            android:id="@+id/action_identificationFragment_to_selfieFragment"
+            app:destination="@id/selfieFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/selfieFragment"
+        android:name="com.okujajoshua.reha.presentation.verification.selfie.SelfieFragment"
+        android:label="fragment_selfie"
+        tools:layout="@layout/fragment_selfie" >
+        <action
+            android:id="@+id/action_selfieFragment_to_cardFragment"
+            app:destination="@id/cardFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
     <fragment
         android:id="@+id/optionsFragment"
         android:name="com.okujajoshua.reha.presentation.transactions.options.OptionsFragment"
         android:label="fragment_options"
-        tools:layout="@layout/fragment_options" >
+        tools:layout="@layout/fragment_options">
         <action
             android:id="@+id/action_optionsFragment_to_optionPhoneFragment"
-            app:destination="@id/optionPhoneFragment" />
+            app:destination="@id/optionPhoneFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_optionsFragment_to_addMoneyFragment2"
-            app:destination="@id/addMoneyFragment" />
+            app:destination="@id/addMoneyFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/cardFragment"
         android:name="com.okujajoshua.reha.presentation.card.CardFragment"
         android:label="fragment_card"
-        tools:layout="@layout/fragment_card" >
+        tools:layout="@layout/fragment_card">
         <action
             android:id="@+id/action_cardFragment_to_optionsFragment"
-            app:destination="@id/optionsFragment" />
+            app:destination="@id/optionsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_cardFragment_to_balanceFragment"
-            app:destination="@id/balanceFragment" />
+            app:destination="@id/balanceFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_cardFragment_to_viewProfileFragment"
-            app:destination="@id/viewProfileFragment" />
+            app:destination="@id/viewProfileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
-            android:id="@+id/action_cardFragment_to_navigation2"
-            app:destination="@id/navigation2" />
+            android:id="@+id/action_cardFragment_to_verificationFragment"
+            app:destination="@id/verificationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <argument
+            android:name="email"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/optionPhoneFragment"
         android:name="com.okujajoshua.reha.presentation.transactions.optionphone.OptionPhoneFragment"
         android:label="fragment_option_phone"
-        tools:layout="@layout/fragment_option_phone" >
+        tools:layout="@layout/fragment_option_phone">
         <action
             android:id="@+id/action_optionPhoneFragment_to_amountFragment"
-            app:destination="@id/amountFragment" />
+            app:destination="@id/amountFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/amountFragment"
         android:name="com.okujajoshua.reha.presentation.transactions.amount.AmountFragment"
         android:label="fragment_amount"
-        tools:layout="@layout/fragment_amount" >
+        tools:layout="@layout/fragment_amount">
         <action
             android:id="@+id/action_amountFragment_to_balanceFragment"
-            app:destination="@id/balanceFragment" />
+            app:destination="@id/balanceFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 </navigation>

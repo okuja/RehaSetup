@@ -2,9 +2,10 @@ package com.okujajoshua.reha.presentation.card
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.amitshekhar.DebugDB
 import com.okujajoshua.reha.database.RehaDatabase
+import com.okujajoshua.reha.domain.User
 import com.okujajoshua.reha.repository.CardRepository
+import com.okujajoshua.reha.repository.UserRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -12,7 +13,7 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.io.IOException
 
-class CardViewModel (application: Application) :
+class CardViewModel (application: Application,email: String) :
     AndroidViewModel(application) {
 
     /**
@@ -21,11 +22,21 @@ class CardViewModel (application: Application) :
 
     private val cardsRepository = CardRepository(RehaDatabase.getInstance(application),application)
 
+    private val userRepository = UserRepository(RehaDatabase.getInstance(application),application)
+
     private val viewModelJob = SupervisorJob()
 
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     val cards = cardsRepository.cards
+
+    private val _user = MutableLiveData<User>()
+    val user : LiveData<User>
+    get() = _user
+
+
+
+
 
     /**
      * Event triggered for network error. This is private to avoid exposing a
@@ -56,8 +67,10 @@ class CardViewModel (application: Application) :
 
 
     init {
-        refreshDataFromRepository()
+
+            refreshDataFromRepository(email)
     }
+
 
 
     /**
@@ -67,7 +80,7 @@ class CardViewModel (application: Application) :
     fun createCardId(){
         viewModelScope.launch {
             try {
-                cardsRepository.createCardId()
+                cardsRepository.createCardId("4883836336860016")
                 _eventNetworkError.value = false
                 _isNetworkErrorShown.value = false
 
@@ -80,10 +93,13 @@ class CardViewModel (application: Application) :
         }
     }
 
-    fun refreshDataFromRepository(){
+    fun refreshDataFromRepository(email: String){
         viewModelScope.launch {
             try {
-                cardsRepository.refreshCards()
+                _user.value = userRepository.getUserByEmail(email)
+                if(user.value!!.verificationStatus) {
+                    cardsRepository.refreshCards()
+                }
                 _eventNetworkError.value = false
                 _isNetworkErrorShown.value = false
 
@@ -113,11 +129,11 @@ class CardViewModel (application: Application) :
     }
 
 
-    class Factory(val app: Application) : ViewModelProvider.Factory {
+    class Factory(val app: Application,val email: String) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(CardViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return CardViewModel(app) as T
+                return CardViewModel(app,email) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }
